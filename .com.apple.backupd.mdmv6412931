@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DateStarted</key>
+	<date>2019-02-19T04:23:55Z</date>
+	<key>FileID</key>
+	<integer>6412931</integer>
+	<key>NameSpaceID</key>
+	<integer>843801808</integer>
+	<key>NewPath</key>
+	<string>Users/iwamoto/Workspace/tweet_collect/.idea</string>
+	<key>SourcePath</key>
+	<string>Users/iwamoto/PycharmProjects/tweet_collect/.idea</string>
+</dict>
+</plist>

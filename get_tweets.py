@@ -5,6 +5,7 @@ import json
 from time import sleep
 from requests_oauthlib import OAuth1Session
 import emoji
+import os
 
 
 def remove_emoji(str):
@@ -21,8 +22,10 @@ def get_tweets(key_word, since, until, loop=1):
 
     tweets = []
     next_page = ''
+    os.mkdir('get_tweets')
+    fw = open('get_tweets' + "/" + key_word + ".json", "w")
 
-    for _ in range(loop):
+    for i in range(loop):
         # update 'next' to collect tweets more than 100
         if next_page != '':
             params = {
@@ -43,9 +46,9 @@ def get_tweets(key_word, since, until, loop=1):
 
         req = twitter.get(url, params=params)
 
+
         # access succeeded
         if req.status_code == 200:
-
             # for API access restriction
             limit = req.headers['x-rate-limit-remaining']
             if limit == 1:
@@ -54,6 +57,7 @@ def get_tweets(key_word, since, until, loop=1):
                 print('Restart.')
 
             search_tl = json.loads(req.text)  # get search results
+            json.dump(search_tl['results'], fw)
 
             for tweet in search_tl['results']:
                 tweets.append(remove_emoji(tweet['text']))
@@ -70,11 +74,12 @@ def get_tweets(key_word, since, until, loop=1):
             print("Failed: %d" % req.status_code)
 
     print("%d Tweets are collected." % len(tweets))
+    fw.close()
     return '\n'.join(tweets)
 
 
 if __name__ == '__main__':
-    print(get_tweets('桜木町', '201308010800', '201308011000'))
+    print(get_tweets('裏垢', '201801010800', '201906091000'))
 
 
 

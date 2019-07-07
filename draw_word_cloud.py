@@ -1,5 +1,6 @@
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import json
 from matplotlib.font_manager import FontProperties
 from count_words import count_words
 from get_tweets import get_tweets
@@ -20,7 +21,7 @@ def draw_word_cloud(word_freq_dict, fig_title):
 
 
 if __name__ == '__main__':
-    draw_word_cloud(
-        count_words(get_tweets('桜木町', '201308010800', '201308011000', loop=10)),
-        '2013-08-01 17:00-19:00 query:桜木町'
-    )
+    with open('/Users/iwamoto/Workspace/uraaka_girls/word-freq.json') as f:
+    	dict = json.load(f)
+    draw_word_cloud(dict, '裏垢女子')
+   # draw_word_cloud(count_words(get_tweets('裏垢女子', '201801010800', '201906091000', loop=100)),'裏垢女子')
